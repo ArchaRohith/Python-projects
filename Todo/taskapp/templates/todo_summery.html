@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block main_block %}
+<div class="container w-25">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="fw-bold text-center">Task Status Summary</h3>
+      <canvas id="myChart"></canvas>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{%block script_block%}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: [{%for ts in task_summary %}"{{ts.status}}",{% endfor %}],
+    datasets: [{
+      label: '# of Votes',
+      data: [{%for ts in task_summary %}"{{ts.count}}", {% endfor %}],
+    borderWidth: 1
+      }]
+    },
+    options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  }
+  });
+</script>
+
+
+{%endblock%}

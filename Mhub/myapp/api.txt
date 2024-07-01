@@ -1,0 +1,171 @@
+scheme:Movies
+
+attributes:title,year,director,runtime,genre,producer
+
+
+1)api for listing all Movies
+
+    url: localhost/8000/api/movies/
+
+    method:Get
+
+    body: nill
+
+    status: pending
+
+
+2)api for creating a movies
+
+    url: localhost/8000/api/movies/
+
+    method:POST
+
+    body: {
+        "title":"movie title",
+        "year":"movie year",
+        "director":"movie director",
+        "genre":"movie genre",
+        "language":"movie language",
+        "producer":"movie producer",
+    }
+
+    status:pending
+
+
+3) api for updating movie
+
+        url: localhost/8000/api/movies/{id}/
+
+        method:PUT
+
+        body: {
+        "title":"movie title",
+        "year":"movie year",
+        "director":"movie director",
+        "genre":"movie genre",
+        "language":"movie language",
+        "producer":"movie producer",
+    }
+
+        status: pending
+
+
+4)api for deleting a movie
+
+    url:localhost/8000/api/movies/delete/{id}/
+
+    method:delete
+    body:nill
+    status:pending
+
+1)step 
+install djangorestframework
+
+pip install djangorestframework
+
+
+2)step setting.py
+
+"rest_framework
+
+
+step 3) creating views
+
+    rest_framework>views.py> class APIView
+
+    rest_framework>response.py>class response
+
+    class MovieListCreateView(APIView):
+
+    def get(self,request,*args,**kwargs):
+
+    //logic for returning all movies
+
+    Response class is responsibble for converting python native type(list,set,tuple,dictionary,)to json
+
+
+    return response(data={"message":"ok"})
+
+    def post (self,request,*args,**kwargs):
+
+    //logic for adding a new movie
+
+    return response(data={"message":"movie create"})
+
+
+
+
+
+
+scheme:Actor
+
+attributes:mame,age,gender,picture
+
+1)Api For listing all Actors
+
+
+    url: localhost/8000/api/Actors/
+
+    method:Get
+
+    body: nill
+
+    status: pending
+
+
+2)Api For creating Actors
+
+
+    url: localhost/8000/api/Actors/
+
+    method:POST
+
+    body: {
+
+        "name":"actor name",
+        "age":"actor_age",
+        "picture",:actor_picture",
+        "gender":"actor_gender"
+    }
+
+    status: pending
+
+
+3)Api For retriving actor details
+
+    url: localhost/8000/api/Actors/{id}/
+
+    method:Get
+
+    body: nill
+
+    status: pending
+
+
+
+5)Api For updating actor details
+
+  url: localhost/8000/api/Actors/{id}/
+
+    method:PUT
+
+    body: {
+
+        "name":"actor name",
+        "age":"actor_age",
+        "picture",:actor_picture",
+        "gender":"actor_gender"
+    }
+
+    status: pending
+
+5)Api for remove actor
+
+    url: localhost/8000/api/Actors/{id}/
+
+    method:DELETE
+
+    body: nill
+
+    status: pending
+

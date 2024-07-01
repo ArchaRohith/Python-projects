@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+    <h1>Movie List View</h1>
+    <!-- //{{data}} -->
+
+  <div class="container p-4 border mt-4">
+    <a href="{%url 'movie-list' %}">Add New Movie</a>
+
+    <table class="table">
+        <tr>
+
+            <th>Title</th>
+            <th>Language</th>
+            <th>Genre</th>
+            <th>Action</th>
+        </tr>
+            {%for m in data%}
+
+            <tr>
+
+                <td>{{m.title}}</td>
+                <td>{{m.language}}</td>
+                <td>{{m.genre}}</td>
+                <td>
+                    <a href="{%url 'movie-detail' m.id%}">View</a>
+
+                    <a href="{%url 'movie-delete' m.id%}">Delete</a>
+
+                    <a href="{%url 'movie-update' m.id%}">Edit</a>
+                </td>
+            </tr>
+
+            {%endfor%}
+    </table>
+
+
+  </div>
+</body>
+</html>

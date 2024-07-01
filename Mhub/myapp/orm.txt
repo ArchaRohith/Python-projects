@@ -1,0 +1,136 @@
+class Movie(models.Model):
+
+    title=models.CharField(max_length=200)
+
+    year=models.CharField(max_length=200)
+
+    director=models.CharField(max_length=200)
+
+    run_time=models.PositiveIntegerField()
+
+    languages=models.CharField(max_length=200)
+
+    genre=models.CharField(max_length=200)
+
+    orm query for creating a new movie object
+
+
+
+
+    >> Movie.objects.create(title="premalu",year="2024",director="girish",run_time="120",language="malayalam",genre="romantic-comedy filim")
+
+    orm query for fetching all movie object
+
+
+    >> qs=Movie.objects.all()
+
+
+
+    ****orm query for fetching one movie details
+
+
+>>qs=ModelName.objects.get(condition)
+
+
+****filtering query sets
+
+>> qs=ModelName.objects.filter(genre="condition")
+
+>>qs=ModelName.objects.filter(language="condition")
+
+
+**filtering malayalam movie name with genere action
+
+>>qs=Movie.objects.filter(languages="malayalam",genre="family") 
+
+table change veruthiyal
+
+pythn manage.py makemigrations
+
+python manage.py migrate
+
+
+fetch moves released after 2023
+
+>> qs=Movie.objects.filter(year__gt=2023)
+
+> __gt(greaterthan)
+
+< __lt(lessthan)
+
+>= __gte(greaterthan or equalto)
+
+<= __lte(lessthan or equalto)
+
+__iexact  (case insensitive)
+
+filter all movies whose genre=action
+
+>> qs=Movie.objects.filter(genere__iexact="action")
+
+
+filter all movie contains ma
+
+__icontains
+
+>>qs=Movie.objects.filter(title__icontains="ma")
+
+
+filter all movies whose genere "action/thriller
+
+>>qs=Movie.objects.filter(genre__in=["action","thriller"])
+
+
+update orm query
+
+Movie.objects.filter(id=1).update(director="prashanth",run_time=180)
+
+
+delete query
+
+Movie.objects.filter(id=8).delete()
+
+
+
+add CharField
+
+fetch all genere
+
+ModelName.objects.values_list("genre",flat=True)
+
+fetch all languages
+
+qs=Movie.objects.values_list('languages',flat=True).distinct()
+
+
+sorting query
+
+    sorting movie with run_time
+
+    >>qs=Movie.objects.all().order_by("run_time")  (sort by ascending order)
+
+    >>qs=Movie.objects.all().order_by("-run_time")  (sort by descending order)
+
+
+
+    aggregate ORM query
+
+    (max,min,sum,count,avg)
+
+    from django.db.models import Max
+
+    max_runtime=Movie.objects.aggregate(Max('run_time'))
+
+    min_runtime=Movie.objects.aggregate(Min('run_time'))
+
+
+    **fetch all movie with longest run_time
+
+    >> qs=Movie.objects.values("run_time").aggregate(longest=Max("run_time"))
+
+    >> data=Movie.objects.filter(run_time=qs.get("longest"))
+
+
+    **group movies wrt genere
+
+    >>> qs=Movie.objects.values("genre").annotate(summary=Count("genre"))

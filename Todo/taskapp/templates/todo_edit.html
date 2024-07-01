@@ -1,0 +1,11 @@
+{%extends 'base.html'%}
+{%block main_block%}
+<div class="container border shadow my-5 p-4 w-50 mx-auto rounded bg-primary-subtle text-primary-emphasis">
+    <form action="" method="post">
+        <h3 class="fw-bold">Task Edit</h3>
+        {%csrf_token%}
+        {{form}}
+        <button type="submit" class="form-control btn btn-outline-secondary fw-bold mt-3">Edit</button>
+    </form>
+</div>
+{%endblock%}
